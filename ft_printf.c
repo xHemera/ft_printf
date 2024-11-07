@@ -6,7 +6,7 @@
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:51:00 by tobesnar          #+#    #+#             */
-/*   Updated: 2024/11/05 17:51:00 by tobesnar         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:38:37 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ int	ft_printf(const char *format, ...)
 	return (i);
 }
 
-int	main(void)
-{
-	int acc = 1;
-	ft_printf("exemple %d\n", acc);
-	return (0);
-}
+// int	main(void)
+// {
+// 	ft_printf("exemple %p %p\n", 0, 0);
+// 	return (0);
+// }
