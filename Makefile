@@ -1,38 +1,33 @@
-NAME 		= libftprintf.a
-CC 			= gcc
-CFLAGS 		= -Wall -Wextra -Werror
-LIB 		= libft/libft.a
-SRC 		= ft_printchr.c\
-			  ft_printf.c\
-			  ft_printhex.c\
-			  ft_printnbr.c\
-			  ft_printpercent.c\
-			  ft_printptr.c\
-			  ft_printstr.c\
-			  ft_printunsigned.c\
+# Variables
+NAME = libftprintf.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRCS = src/ft_printf.c src/print_format.c src/ft_printnbr.c \
+       src/ft_printstr.c src/ft_printchr.c src/ft_printhex.c \
+       src/ft_printpercent.c src/ft_printptr.c src/ft_printunsigned.c
+OBJS = $(SRCS:.c=.o)
+LIBFT = libft/libft.a
 
-OBJ 		= $(SRC:.c=.o)
-
+# Règles
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB)
-	cp $(LIB) $(NAME)
-	ar rs $(NAME) $(OBJ)
-
-$(LIB):
-	$(MAKE) -C $$(dirname $@)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJS)
+	$(MAKE) -C libft
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJS)
 
 clean:
-	$(MAKE) clean -C $$(dirname $(LIB));
-	rm -f $(OBJ)
+	$(MAKE) -C libft clean
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(LIB)
+	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY:		all clean fclean re
+# Dépendances
+%.o: %.c
+	$(CC) $(CFLAGS) -I includes -c $< -o $@
+
+.PHONY: all clean fclean re

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   print_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tobesnar <tobesnar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 17:51:00 by tobesnar          #+#    #+#             */
-/*   Updated: 2024/11/07 14:38:37 by tobesnar         ###   ########.fr       */
+/*   Created: 2024/12/02 14:01:18 by tobesnar          #+#    #+#             */
+/*   Updated: 2024/12/02 14:09:37 by tobesnar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	print_format(const char format, va_list arg)
 {
@@ -33,28 +33,3 @@ int	print_format(const char format, va_list arg)
 		i += ft_printunsigned(va_arg(arg, unsigned int));
 	return (i);
 }
-
-int	ft_printf(const char *format, ...)
-{
-	va_list	arg;
-	int		i;
-
-	va_start(arg, format);
-	i = 0;
-	while (*format != '\0')
-	{
-		if (*format == '%')
-			i += print_format(*(++format), arg);
-		else
-			i += write (1, format, 1);
-		++format;
-	}
-	va_end(arg);
-	return (i);
-}
-
-// int	main(void)
-// {
-// 	ft_printf("exemple %p %p\n", 0, 0);
-// 	return (0);
-// }
